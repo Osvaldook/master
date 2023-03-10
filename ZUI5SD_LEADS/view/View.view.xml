@@ -1,0 +1,113 @@
+<mvc:View xmlns:html="http://www.w3.org/1999/xhtml" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m"
+	controllerName="zui5sd_leads.controller.View" displayBlock="true">
+	<App>
+		<pages>
+			<Page>
+				<customHeader>
+					<Bar>
+						<contentMiddle>
+							<Title text="{i18n>title}" textAlign="Center" titleStyle="H3"/>
+						</contentMiddle>
+					</Bar>
+				</customHeader>
+				<subHeader>
+					<Toolbar width="100%">
+						<content>
+							<HBox width="100%" alignItems="Center" justifyContent="SpaceBetween">
+								<items>
+									<ObjectHeader id="iRepresentante" title="Douglas Farcic" intro="Representante/Vendedor" responsive="true" titleLevel="H4"/>
+									<RatingIndicator maxValue="5" id="irating" editable="false" enabled="false" visualMode="Full" iconSize="25px"/>
+									<Button icon="sap-icon://add-photo" press=".onPhoto"/>
+								</items>
+							</HBox>
+						</content>
+					</Toolbar>
+				</subHeader>
+				<content>
+					<Label text="Email"></Label>
+					<Text xmlns="sap.m" text="{userapi>/email}"></Text>					
+					<sap.ui.layout.form:SimpleForm xmlns:sap.ui.layout.form="sap.ui.layout.form" xmlns:sap.ui.core="sap.ui.core" editable="true"
+						layout="ResponsiveGridLayout">
+						<sap.ui.layout.form:title>
+							<sap.ui.core:Title text="Dados Básicos" id="title3"/>
+						</sap.ui.layout.form:title>
+						<sap.ui.layout.form:content>
+							<Text text="Tipo de Pessoa:" textAlign="Center"/>
+							<RadioButtonGroup columns="2" valueState="Information">
+								<buttons>
+									<RadioButton text="Jurídica" id="rdbJ" select=".onSelectJ"/>
+									<RadioButton text="Física" id="rdbF" select=".onSelectF"/>
+								</buttons>
+							</RadioButtonGroup>
+							<Label text="CNPJ" width="100%" id="lcnpj" required="true"/>
+							<MaskInput id="icnpj" placeholder="Informe o CNPJ..." mask="99.999.999/9999-99" placeholderSymbol="_"/>
+							<Label text="CPF" width="100%" id="lcpf" required="true"/>
+							<MaskInput id="icpf" placeholder="Informe o CPF..." required="true" mask="999.999.999-99" placeholderSymbol="_"/>
+							<Label id="lname1" text="Razão Social" width="100%" required="true"/>
+							<Input id="iname1" placeholder="Informe a Razão Social..." required="true"/>
+							<Label text="Cidade/Estado" width="100%" required="true"/>
+							<HBox width="100%" renderType="Bare">
+								<items>
+									<Input id="icity" placeholder="Informe a cidade/estado..." required="true" showSuggestion="true" textFormatMode="ValueKey"
+										suggest="onSuggest" suggestionItemSelected="onSuggestionItemTaxjurcode" maxSuggestionWidth="70%" showTableSuggestionValueHelp="false"
+										suggestionRows="{taxjurcodeSH>/ZCDSSD_TAXJURCODE}">
+										<suggestionColumns>
+											<Column popinDisplay="Inline" demandPopin="true">
+												<Label text="Cidade"/>
+											</Column>
+											<Column popinDisplay="Inline" demandPopin="true" width="15%">
+												<Label text="Estado"/>
+											</Column>
+										</suggestionColumns>
+										<suggestionRows>
+											<ColumnListItem>
+												<Label text="{taxjurcodeSH>city}"/>
+												<Label text="{taxjurcodeSH>region}"/>
+											</ColumnListItem>
+										</suggestionRows>
+									</Input>
+								</items>
+							</HBox>
+							<Label text="Telefone" width="100%" required="true"/>
+							<MaskInput id="iphone" placeholder="Informe o telefone..." required="true" mask="(99) 99999-9999" placeholderSymbol="_"/>
+							<Label text="WhatsApp" width="100%"/>
+							<MaskInput id="iwhats" placeholder="Informe o whatsapp..." mask="(99) 99999-9999" placeholderSymbol="_"/>
+							<Label text="E-mail" width="100%" required="true"/>
+							<Input id="iemail" placeholder="Informe o e-mail..." required="true" type="Email"/>
+						</sap.ui.layout.form:content>
+					</sap.ui.layout.form:SimpleForm>
+					<sap.ui.layout.form:SimpleForm xmlns:sap.ui.layout.form="sap.ui.layout.form" xmlns:sap.ui.core="sap.ui.core" editable="true"
+						layout="ResponsiveGridLayout" id="__form1">
+						<sap.ui.layout.form:content>
+							<Label text="Nome" width="100%"/>
+							<Input id="iname1_ref" placeholder="Informe o nome do contato..."/>
+							<Label text="E-mail" width="100%"/>
+							<Input id="iemail_ref" placeholder="Informe o e-mail do contato..." type="Email"/>
+						</sap.ui.layout.form:content>
+						<sap.ui.layout.form:title>
+							<sap.ui.core:Title text="Contato" id="__title2"/>
+						</sap.ui.layout.form:title>
+					</sap.ui.layout.form:SimpleForm>
+					<sap.ui.layout.form:SimpleForm xmlns:sap.ui.layout.form="sap.ui.layout.form" xmlns:sap.ui.core="sap.ui.core" editable="true"
+						layout="ResponsiveGridLayout" id="__form2">
+						<sap.ui.layout.form:content>
+							<Label text="Observações" width="100%"/>
+							<TextArea rows="3" id="icomments"/>
+						</sap.ui.layout.form:content>
+						<sap.ui.layout.form:title>
+							<sap.ui.core:Title text="Observações"/>
+						</sap.ui.layout.form:title>
+					</sap.ui.layout.form:SimpleForm>
+				</content>
+				<footer>
+					<Bar>
+						<contentRight>
+							<Button text="Cadastrar" type="Accept" icon="sap-icon://save" press=".onSave"/>
+							<Button text="Cancelar" type="Reject" icon="sap-icon://cancel" press=".onCancel"/>
+						</contentRight>
+					</Bar>
+				</footer>
+			</Page>
+		</pages>
+	</App>
+</mvc:View>
